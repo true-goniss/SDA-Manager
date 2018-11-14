@@ -104,6 +104,7 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.cbTopMost = new System.Windows.Forms.CheckBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.button3 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -167,7 +168,7 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(150, 33);
             this.button2.TabIndex = 72;
-            this.button2.Text = "Закрыть выделенные";
+            this.button2.Text = "Закрыть все SDA";
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -255,13 +256,16 @@
             this.listView1.TabIndex = 78;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.List;
+            this.listView1.Click += new System.EventHandler(this.listView1_Click);
             this.listView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listView1_KeyDown);
             this.listView1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listView1_MouseClick);
             this.listView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listView1_MouseDoubleClick);
+            this.listView1.MouseEnter += new System.EventHandler(this.listView1_MouseEnter);
             // 
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.Transparent;
+            this.panel4.Controls.Add(this.button3);
             this.panel4.Controls.Add(this.panel12);
             this.panel4.Controls.Add(this.panel11);
             this.panel4.Controls.Add(this.panel10);
@@ -275,7 +279,7 @@
             this.panel4.Controls.Add(this.panel15);
             this.panel4.Location = new System.Drawing.Point(308, 21);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(505, 426);
+            this.panel4.Size = new System.Drawing.Size(505, 447);
             this.panel4.TabIndex = 79;
             // 
             // panel12
@@ -884,7 +888,6 @@
             // 
             // timer1
             // 
-            this.timer1.Enabled = true;
             this.timer1.Interval = 5000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
@@ -916,6 +919,20 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            this.pictureBox1.MouseEnter += new System.EventHandler(this.pictureBox1_MouseEnter);
+            // 
+            // button3
+            // 
+            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button3.BackColor = System.Drawing.Color.LightGoldenrodYellow;
+            this.button3.Font = new System.Drawing.Font("Consolas", 10.25F);
+            this.button3.Location = new System.Drawing.Point(10, 417);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(483, 25);
+            this.button3.TabIndex = 67;
+            this.button3.Text = "Открыть отмеченные";
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // Form1
             // 
@@ -939,6 +956,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "SDA Manager By Gon_Iss";
+            this.MouseEnter += new System.EventHandler(this.Form1_MouseEnter);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -1049,6 +1067,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button3;
     }
 }
 

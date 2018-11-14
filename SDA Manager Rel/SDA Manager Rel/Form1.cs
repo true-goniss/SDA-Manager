@@ -453,16 +453,24 @@ namespace SDA_Manager_Rel
 
         private void listView1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
+            //RefreshListOfAuths();
+
             ListView listbox = sender as ListView;
 
             foreach (IntPtr hWnd in ListHandles)
             {
-                if (GetHwnd.Get_WindowTextByHandle(hWnd).Contains(listbox.SelectedItems[0].Text))
+                try
                 {
-                    string CODE = GetHwnd.Get_WindowAuthCode(hWnd);
-                    label3.Text = CODE;
-                    Clipboard.SetText(CODE);
+                    string windowText = GetHwnd.Get_WindowTextByHandle(hWnd);
+
+                    if (windowText.Contains(listbox.SelectedItems[0].Text))
+                    {
+                        string CODE = GetHwnd.Get_WindowAuthCode(hWnd);
+                        label3.Text = CODE;
+                        Clipboard.SetText(CODE);
+                    }
                 }
+                catch(Exception ex) { }
             }
         }
 
@@ -506,7 +514,7 @@ namespace SDA_Manager_Rel
             {
                 foreach (IntPtr hWnd in ListHandles)
                 {
-                    foreach (ListViewItem item in listView1.SelectedItems)
+                    foreach (ListViewItem item in listView1.Items)
                     {
                         if (GetHwnd.Get_WindowTextByHandle(hWnd).Contains(item.Text.ToString()))
                         {
@@ -546,6 +554,52 @@ namespace SDA_Manager_Rel
         {
             Form2 form2 = new SDA_Manager_Rel.Form2();
             form2.Show();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+                foreach (Panel pn in panel4.Controls.OfType<Panel>().ToList())
+                {
+                    try
+                    {
+                        Panel panel = pn.Parent as Panel;
+                        bool Checked = pn.Controls.OfType<CheckBox>().ToList()[0].Checked;
+                        if (!Checked) continue;
+
+                        string Path = pn.Controls.OfType<TextBox>().ToList()[1].Text + "\\" + "Steam Desktop Authenticator.exe";
+
+                        Process _process = new Process();
+                        ProcessStartInfo startInfo = new ProcessStartInfo();
+
+                        startInfo.FileName = Path;
+
+                        _process.StartInfo = startInfo;
+                        _process.Start();
+                    }
+                    catch (Exception ex) { }
+                }
+                //form3Things.refreshButton.PerformClick();
+        }
+
+        private void listView1_Click(object sender, EventArgs e)
+        {
+            //RefreshListOfAuths();
+        }
+
+        private void Form1_MouseEnter(object sender, EventArgs e)
+        {
+            //string s = "";
+        }
+
+        private void pictureBox1_MouseEnter(object sender, EventArgs e)
+        {
+            //RefreshListOfAuths();
+        }
+
+        private void listView1_MouseEnter(object sender, EventArgs e)
+        {
+            RefreshListOfAuths();
         }
     }
 
